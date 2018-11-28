@@ -1,3 +1,38 @@
-<p>
-  notes works!
-</p>
+<div class="container">
+  <section id="notes" class="row py-4">
+
+    <!-- No notes message -->
+    <ng-template #noNotes>
+
+      <article id="defaultNote" class="col-12">
+        <p>Du har endnu ikke oprettet en aktivitet.</p>
+      </article>
+
+    </ng-template>
+
+    <!-- Notes -->
+    <div *ngIf="noteCount; else noNotes">
+      <article *ngFor="let note of data.notes" class="col-12 col-md-6 col-xl-4 mb-3">
+
+        <div class="card h-100 bg-white" [className]="note.energy >= 0 ?  'greenBorder' : 'redBorder'">
+
+            <div class="card-body pl-3 pr-2 pt-2">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title mt-3">{{note.title}}</h4>
+                    <!-- <img class="cardSmiley" src="{{imgPath}}"> -->
+                    <img class="cardSmiley" src="assets/img/happy.svg"> <!-- Smiley imgPath? -->
+                </div>
+
+                <h6 class="card-subtitle mb-2 text-muted">{{note.dateString}}</h6>
+                <p class="card-text">{{note.desc}}</p>
+            </div>
+            
+            <a href="#" class="px-3 pb-3">Rediger</a>
+        
+        </div>
+
+      </article>
+    </div>
+    
+  </section>
+</div>
