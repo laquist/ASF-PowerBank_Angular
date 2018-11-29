@@ -3,7 +3,13 @@
   <div id="progressContainer" class="progress col-12 p-0 my-2">
     <div id="progressBar" class="progress-bar text-dark bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
         <p id="progressText" class="position-absolute m-0">0%</p>
+        <p *ngIf=""></p>
     </div>
   </div>
 
 </div>
+
+<!-- Brug denne -->
+<!-- <article *ngIf="!data.notes">
+  <div>{{test()}}</div>
+</article> -->

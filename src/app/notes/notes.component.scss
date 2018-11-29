@@ -1,8 +1,7 @@
 #notes {
-    // background-color: #e4e4e4;
-
     #defaultNote {
         text-align: center;
+        margin-top: 10px;
     }
 
     article {
@@ -20,11 +19,7 @@
     .cardSmiley {
         height: 47px;
         width: 47px;
-    }    
+        min-height: 47px;
+        min-width: 47px;
+    }
 }
-
-
-
-
-
-
