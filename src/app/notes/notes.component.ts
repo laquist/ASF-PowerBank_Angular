@@ -12,14 +12,14 @@ export class NotesComponent implements OnInit {
   noteCount: Number = 1;
 
   // Data object
-  data: Object = {
-    notes: MockNotes,
-    energy: {
-        startTime: new Date(0),
-        endTime: new Date(0),
-        interval: 0
-    }
-  };
+//   data: Object = {
+//     notes: MockNotes,
+//     energy: {
+//         startTime: new Date(0),
+//         endTime: new Date(0),
+//         interval: 0
+//     }
+//   };
 
   constructor() { }
 
