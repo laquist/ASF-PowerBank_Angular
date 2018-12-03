@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MockNotes } from '../mock-notes';
+import { DataService } from '../data.service';
+import { Note } from '../note';
 
 @Component({
   selector: 'app-notes',
@@ -11,22 +12,26 @@ export class NotesComponent implements OnInit {
   // Temp test
   noteCount: Number = 1;
 
-  // Data object
-//   data: Object = {
-//     notes: MockNotes,
-//     energy: {
-//         startTime: new Date(0),
-//         endTime: new Date(0),
-//         interval: 0
-//     }
-//   };
+  notes: Note[];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    // temp
+    // this.dataService.generateTestData();
+    // console.log(this.dataService.data);
+    // this.dataService.saveData();
+
+
+    this.dataService.loadData();
+    this.getNotes();
   }
 
-  getSmileyImgPath (energy): String {
+  getNotes(): void {
+    this.notes = this.dataService.getNotes();
+  }
+
+  getSmileyImgPath(energy): String {
     let path;
 
     if (energy === 25) {
@@ -44,7 +49,7 @@ export class NotesComponent implements OnInit {
     return path;
   }
 
-  createDateString (date): String {
+  createDateString(date): String {
     const currentDate = new Date();
     let dateString;
     // Saves dateTime and makes sure that the time is in 4 digits, instead of it only showing one zero character (15:00 vs 15:0)
