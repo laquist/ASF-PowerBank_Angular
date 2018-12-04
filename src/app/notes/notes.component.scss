@@ -6,20 +6,24 @@
 
     article {
         font-family: sans-serif;
-    }
 
-    .greenBorder {
-        border-left: 8px solid #5cb85c;
-    }
-    
-    .redBorder {
-        border-left: 8px solid #d9534f;
-    }
+        .greenBorder {
+            border-left: 8px solid #5cb85c;
+        }
+        
+        .redBorder {
+            border-left: 8px solid #d9534f;
+        }
 
-    .cardSmiley {
-        height: 47px;
-        width: 47px;
-        min-height: 47px;
-        min-width: 47px;
+        #card {
+            
+        }
+
+        .cardSmiley {
+            height: 47px;
+            width: 47px;
+            min-height: 47px;
+            min-width: 47px;
+        }
     }
 }

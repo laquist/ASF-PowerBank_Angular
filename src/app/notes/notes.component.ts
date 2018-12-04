@@ -9,20 +9,11 @@ import { Note } from '../note';
 })
 export class NotesComponent implements OnInit {
 
-  // Temp test
-  noteCount: Number = 1;
-
   notes: Note[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // temp
-    // this.dataService.generateTestData();
-    // console.log(this.dataService.data);
-    // this.dataService.saveData();
-
-
     this.dataService.loadData();
     this.getNotes();
   }
