@@ -14,17 +14,14 @@ export class NotesComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // this.dataService.generateTestData();
-    // this.dataService.saveData();
-
-    this.dataService.loadData();
     this.getNotes();
   }
-
+  /** Gets Notes and sets this.notes */
   getNotes(): void {
     this.notes = this.dataService.getNotes();
   }
 
+  /** Gets the img path that belongs to the energy */
   getSmileyImgPath(energy): String {
     let path;
 
@@ -43,6 +40,7 @@ export class NotesComponent implements OnInit {
     return path;
   }
 
+  /** Creates a Date string in the correct format */
   createDateString(date): String {
     const currentDate = new Date();
     let dateString;

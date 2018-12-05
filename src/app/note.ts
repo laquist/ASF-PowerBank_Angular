@@ -1,12 +1,12 @@
 export class Note {
 
-    title: String;
-    energy: Number;
-    desc: String;
+    title: string;
+    energy: number;
+    desc: string;
     date: Date;
-    id: Number;
+    id: number;
 
-    constructor (title: String, energy: Number, desc: String, date: Date) {
+    constructor (title: string, energy: number, desc: string, date: Date) {
         this.title = title;
         this.energy = energy;
         this.desc = desc;

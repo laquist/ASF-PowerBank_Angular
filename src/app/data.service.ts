@@ -80,6 +80,8 @@ export class DataService {
 
         // Sets this.data to the new Data instance
         this.data = newDataObj;
+
+        console.log('Data loaded.');
       }
     }
   }
@@ -112,7 +114,7 @@ export class DataService {
   }
 
   /** Sets new interval and if success then saves data to LocalStorage */
-  setEnergyInterval(interval: Number): void {
+  setEnergyInterval(interval: number): void {
     if (this.data.energy.interval = interval) {
       console.log('Interval updated');
 
@@ -134,10 +136,10 @@ export class DataService {
 
   /** Generates TestData from the Mock-notes.ts file */
   generateTestData(): void {
-    const startTime = new Date(0);
+    const startTime = new Date();
     startTime.setHours(7, 0, 0, 0);
 
-    const endTime = new Date(0);
+    const endTime = new Date();
     endTime.setHours(23, 0, 0, 0);
 
     this.data = new Data(
@@ -150,5 +152,7 @@ export class DataService {
     );
 
     console.log('TestData created');
+
+    this.saveData();
   }
 }
