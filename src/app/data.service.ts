@@ -111,6 +111,17 @@ export class DataService {
     return this.data.energy;
   }
 
+  /** Sets new interval and if success then saves data to LocalStorage */
+  setEnergyInterval(interval: Number): void {
+    if (this.data.energy.interval = interval) {
+      console.log('Interval updated');
+
+      this.saveData();
+    } else {
+      console.log('Error while setting interval');
+    }
+  }
+
   /** Checks elements in an array for having a property with same value as the value you send as parameter */
   checkForMatch(array, propertyToMatch, valueToMatch): Boolean {
     for (let i = 0; i < array.length; i++) {
@@ -123,11 +134,17 @@ export class DataService {
 
   /** Generates TestData from the Mock-notes.ts file */
   generateTestData(): void {
+    const startTime = new Date(0);
+    startTime.setHours(7, 0, 0, 0);
+
+    const endTime = new Date(0);
+    endTime.setHours(23, 0, 0, 0);
+
     this.data = new Data(
       MockNotes,
       new Energy(
-        new Date(0),
-        new Date(0),
+        startTime,
+        endTime,
         0
       )
     );

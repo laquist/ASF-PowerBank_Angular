@@ -14,6 +14,11 @@ export class EnergyComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    // this.dataService.generateTestData();
+    // this.dataService.saveData();
+    this.dataService.loadData();
+    this.calcInterval();
+    this.dataService.saveData();
   }
 
   /** */
@@ -60,14 +65,19 @@ export class EnergyComponent implements OnInit {
 //     }
 // }
 
-calcInterval() {
-    if (this.data.energy.startTime !== new Date(0)
-    && this.data.energy.endTime !== new Date(0)) {
-        // Calculates time interval for 1%
-        this.data.energy.interval = (this.data.energy.endTime - this.data.energy.startTime) / 100;
-    } else {
-        console.log('ERROR calculating energy interval!');
-    }
+calcInterval(): void {
+  if (this.dataService.data.energy.startTime !== new Date(0)
+  && this.dataService.data.energy.endTime !== new Date(0)) {
+
+    // Calculates time interval for 1%
+    const newInterval = (this.dataService.data.energy.endTime.getTime() - this.dataService.data.energy.startTime.getTime()) / 100;
+
+    // Sets new interval
+    this.dataService.setEnergyInterval(newInterval);
+
+  } else {
+    console.log('ERROR calculating energy interval!');
+  }
 }
 
 // calcNextTimer () {
