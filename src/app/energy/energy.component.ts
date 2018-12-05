@@ -13,9 +13,6 @@ export class EnergyComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // this.dataService.generateTestData();
-    // this.dataService.loadData();
-
     this.calcInterval();
 
     // calcEnergyPercent skal kaldes af energy-bar'en.
