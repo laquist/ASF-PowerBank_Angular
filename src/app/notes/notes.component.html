@@ -10,10 +10,8 @@
   <section class="row" *ngIf="notes; else noNotes">
     <!-- Notes -->
     <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes">
-      <div [ngClass]="{
+      <div id="card" [ngClass]="{
         'card' : true,
-        'h-100' : true,
-        'bg-white' : true,
         'greenBorder' : note.energy >= 0,
         'redBorder' : note.energy < 0
       }">
