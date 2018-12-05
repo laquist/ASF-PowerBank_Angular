@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Data } from './data';
-import { Energy } from './energy';
-import { MockNotes } from './mock-notes';
 import { Note } from './note';
+import { Energy } from './energy';
+
+import { MockNotes } from './mock-notes';
 
 @Injectable({
   providedIn: 'root'
@@ -100,11 +101,18 @@ export class DataService {
     }
   }
 
+  /** Returns Notes */
   getNotes(): Note[] {
     return this.data.notes;
   }
 
-  checkForMatch (array, propertyToMatch, valueToMatch): Boolean {
+  /** Returns Energy Object with starttime, endtime, and interval */
+  getEnergyInfo(): Energy {
+    return this.data.energy;
+  }
+
+  /** Checks elements in an array for having a property with same value as the value you send as parameter */
+  checkForMatch(array, propertyToMatch, valueToMatch): Boolean {
     for (let i = 0; i < array.length; i++) {
       if (array[i][propertyToMatch] === valueToMatch) {
         return true;
@@ -113,6 +121,7 @@ export class DataService {
     return false;
   }
 
+  /** Generates TestData from the Mock-notes.ts file */
   generateTestData(): void {
     this.data = new Data(
       MockNotes,

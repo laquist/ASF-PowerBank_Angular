@@ -7,28 +7,27 @@
     </article>
   </ng-template>
 
-  <section class="row py-4" *ngIf="notes; else noNotes">
+  <section class="row" *ngIf="notes; else noNotes">
     <!-- Notes -->
-    <article *ngFor="let note of notes" class="col-12 col-md-6 col-xl-4 mb-3">
-      <!-- <div class="card h-100 bg-white" [className]="note.energy >= 0 ?  'greenBorder' : 'redBorder'"> -->
-      <div id="card" [ngClass]="{
+    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes">
+      <div [ngClass]="{
         'card' : true,
         'h-100' : true,
         'bg-white' : true,
-        'greenBorder' : note.energy >= 0
+        'greenBorder' : note.energy >= 0,
+        'redBorder' : note.energy < 0
       }">
-          <div class="card-body pl-3 pr-2 pt-2">
-              <div class="d-flex justify-content-between">
-                  <h4 class="card-title mt-3">{{note.title}}</h4>
-                  <img class="cardSmiley" [src]="getSmileyImgPath(note.energy)">
-              </div>
-
-              <h6 class="card-subtitle mb-2 text-muted">{{createDateString(note.date)}}</h6>
-              <p class="card-text">{{note.desc}}</p>
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h4 class="card-title">{{note.title}}</h4>
+            <img class="cardSmiley" [src]="getSmileyImgPath(note.energy)">
           </div>
+
+          <h6 class="card-subtitle">{{createDateString(note.date)}}</h6>
+          <p class="card-text">{{note.desc}}</p>
+        </div>
           
-          <a href="#" class="px-3 pb-3">Rediger</a>
-      
+        <a href="#" id="edit">Rediger</a>
       </div>
     </article>
   </section>

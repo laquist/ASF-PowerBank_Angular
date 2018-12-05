@@ -14,6 +14,9 @@ export class NotesComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    // this.dataService.generateTestData();
+    // this.dataService.saveData();
+
     this.dataService.loadData();
     this.getNotes();
   }

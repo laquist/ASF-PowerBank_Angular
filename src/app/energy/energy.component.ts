@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-// ** TEMP
-import { MockNotes } from '../mock-notes';
-import { Note } from '../note';
+import { DataService } from '../data.service';
+import { Energy } from '../energy';
 
 @Component({
   selector: 'app-energy',
@@ -11,20 +9,16 @@ import { Note } from '../note';
 })
 export class EnergyComponent implements OnInit {
 
-  // ** TEMP
-  // Data object
-  // data = {
-  //   notes: MockNotes,
-  //   energy: {
-  //     startTime: new Date(0),
-  //     endTime: new Date(0),
-  //     interval: 0
-  //   }
-  // };
+  energyInfo: Energy;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+  }
+
+  /** */
+  getEnergyInfo() {
+    this.energyInfo = this.dataService.getEnergyInfo();
   }
 
 //   calcEnergyPercent () {
@@ -66,15 +60,15 @@ export class EnergyComponent implements OnInit {
 //     }
 // }
 
-// calcInterval () {
-//     if (this.data.energy.startTime !== new Date(0)
-//     && this.data.energy.endTime !== new Date(0)) {
-//         // Calculates time interval for 1%
-//         this.data.energy.interval = (this.data.energy.endTime - this.data.energy.startTime) / 100;
-//     } else {
-//         console.log('ERROR calculating energy interval!');
-//     }
-// }
+calcInterval() {
+    if (this.data.energy.startTime !== new Date(0)
+    && this.data.energy.endTime !== new Date(0)) {
+        // Calculates time interval for 1%
+        this.data.energy.interval = (this.data.energy.endTime - this.data.energy.startTime) / 100;
+    } else {
+        console.log('ERROR calculating energy interval!');
+    }
+}
 
 // calcNextTimer () {
 //     // Calculates millisecs from startTime to now

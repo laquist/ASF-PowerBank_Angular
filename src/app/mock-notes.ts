@@ -6,7 +6,7 @@ const a = new Note(
 a.id = 1;
 
 const b = new Note(
-    'Klement viste mig hans koldbrand', -25, 'Jeg har ikke lyst til at tale om det...', new Date('November 25, 2018, 13:00:00')
+    'Der skete noget', -25, 'Jeg har ikke lyst til at tale om det...', new Date('November 25, 2018, 13:00:00')
 );
 b.id = 2;
 
