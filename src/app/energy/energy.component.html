@@ -2,7 +2,9 @@
 
   <div id="progressContainer" class="progress col-12">
     <div id="progressBar" class="progress-bar" role="progressbar" [attr.aria-valuenow]="getRoundedEnergyPercent()" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width.%' : getRoundedEnergyPercent()}">
-        <p id="progressText" class="position-absolute">{{getRoundedEnergyPercent()}}%</p>
+        <!-- <p id="progressText" class="position-absolute">{{getRoundedEnergyPercent()}}%</p> -->
+        <p id="progressText" class="position-absolute">{{energyPercent}}%</p>
+        <!-- <p id="progressText" class="position-absolute">{{energy}}%</p> -->
         <p *ngIf=""></p>
     </div>
   </div>

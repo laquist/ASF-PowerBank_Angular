@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, observable, interval } from 'rxjs';
 import { DataService } from '../data.service';
-import { Note } from '../note';
 import { Energy } from '../energy';
+// import { Note } from '../note';
 
 @Component({
   selector: 'app-energy',
@@ -10,14 +11,16 @@ import { Energy } from '../energy';
 })
 export class EnergyComponent implements OnInit {
 
+  energyPercent: number;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    // Calculates interval (milisecs) between 1 percent
     this.calcInterval();
 
-    // calcEnergyPercent skal kaldes af energy-bar'en.
-
-    // calcNextTimer skal køres fra hvor man sætter en timer
+    // Updates energyPercent and sets new timer
+    this.updateEnergyPercent();
   }
 
   /** Calculates the energy percent */
@@ -30,8 +33,20 @@ export class EnergyComponent implements OnInit {
       // Time difference from startTime to now
       const difference = currentTime.getTime() - this.dataService.data.energy.startTime.getTime();
 
+      // Test
+      console.log('difference');
+      console.log(difference);
+
+      // Test
+      console.log('difference - interval');
+      console.log(difference - this.dataService.data.energy.interval);
+
       // Current energy based on the normal "uncharge"
       let energy = 100 - (difference / this.dataService.data.energy.interval);
+
+      // Test
+      console.log('hallo');
+      console.log(energy);
 
       // Gets notes
       const notes = this.dataService.getNotes();
@@ -60,6 +75,7 @@ export class EnergyComponent implements OnInit {
     }
   }
 
+  /** Gets the Energy Percent in rounded numbers (no decimals) */
   getRoundedEnergyPercent(): number {
     return Math.floor(this.calcEnergyPercent());
   }
@@ -95,6 +111,20 @@ export class EnergyComponent implements OnInit {
     const timeForNextUpdate = nextUpdate - currentEnergy;
 
     return timeForNextUpdate;
+  }
+
+  /** Updates energyPercent and sets a new timer for next update */
+  updateEnergyPercent() {
+    // Sets the energyPercent
+    this.energyPercent = this.getRoundedEnergyPercent();
+
+    // Sets new timer
+    this.setEnergyTimer();
+  }
+
+  /** Sets timer for next update */
+  setEnergyTimer() {
+    setTimeout(this.updateEnergyPercent, this.calcNextTimer());
   }
 
 }
