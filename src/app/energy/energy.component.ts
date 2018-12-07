@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, observable, interval } from 'rxjs';
 import { DataService } from '../data.service';
 import { Energy } from '../energy';
+import { start } from 'repl';
 // import { Note } from '../note';
 
 @Component({
@@ -30,23 +31,19 @@ export class EnergyComponent implements OnInit {
     // Checks if currentTime is between the startTime & endTime
     if (currentTime.getHours() >= this.dataService.data.energy.startTime.getHours()
     && currentTime.getHours() < this.dataService.data.energy.endTime.getHours()) {
+
+      // Creates a copy of startTime and endTime date, and changes the Year, Month, Day to todays
+      const startTime = new Date(this.dataService.data.energy.startTime);
+      startTime.setFullYear(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate());
+
+      const endTime = new Date(this.dataService.data.energy.endTime);
+      endTime.setFullYear(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate());
+
       // Time difference from startTime to now
-      const difference = currentTime.getTime() - this.dataService.data.energy.startTime.getTime();
-
-      // Test
-      console.log('difference');
-      console.log(difference);
-
-      // Test
-      console.log('difference - interval');
-      console.log(difference - this.dataService.data.energy.interval);
+      const difference = currentTime.getTime() - startTime.getTime();
 
       // Current energy based on the normal "uncharge"
       let energy = 100 - (difference / this.dataService.data.energy.interval);
-
-      // Test
-      console.log('hallo');
-      console.log(energy);
 
       // Gets notes
       const notes = this.dataService.getNotes();
@@ -80,6 +77,15 @@ export class EnergyComponent implements OnInit {
     return Math.floor(this.calcEnergyPercent());
   }
 
+  /** Updates energyPercent and sets a new timer for next update */
+  updateEnergyPercent() {
+    // Sets the energyPercent
+    this.energyPercent = this.getRoundedEnergyPercent();
+
+    // Sets new timer
+    this.setEnergyTimer();
+  }
+
   /** Calculates and saves the interval (in milisecs) of 1 percent */
   calcInterval(): void {
     if (this.dataService.data.energy.startTime !== new Date(0)
@@ -91,7 +97,7 @@ export class EnergyComponent implements OnInit {
       // Calculates time interval for 1%
       const newInterval = (endTime - startTime) / 100;
 
-      // Saves the interval
+      // Sets the interval and saves to LocalStorage
       this.dataService.setEnergyInterval(newInterval);
 
     } else {
@@ -105,21 +111,13 @@ export class EnergyComponent implements OnInit {
     const currentEnergy = this.calcEnergyPercent() * this.dataService.data.energy.interval;
 
     // Calculates millisecs from startTime and to the next percent
-    const nextUpdate = (Math.floor(this.calcEnergyPercent()) + 1) * this.dataService.data.energy.interval;
+    // const nextUpdate = (Math.floor(this.calcEnergyPercent()) + 1) * this.dataService.data.energy.interval;
+    const nextUpdate = (this.getRoundedEnergyPercent() + 1) * this.dataService.data.energy.interval;
 
     // Calculates millisecs from now to next percent
     const timeForNextUpdate = nextUpdate - currentEnergy;
 
     return timeForNextUpdate;
-  }
-
-  /** Updates energyPercent and sets a new timer for next update */
-  updateEnergyPercent() {
-    // Sets the energyPercent
-    this.energyPercent = this.getRoundedEnergyPercent();
-
-    // Sets new timer
-    this.setEnergyTimer();
   }
 
   /** Sets timer for next update */

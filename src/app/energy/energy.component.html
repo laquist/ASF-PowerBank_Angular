@@ -1,17 +1,9 @@
 <div class="row">
 
   <div id="progressContainer" class="progress col-12">
-    <div id="progressBar" class="progress-bar" role="progressbar" [attr.aria-valuenow]="getRoundedEnergyPercent()" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width.%' : getRoundedEnergyPercent()}">
-        <!-- <p id="progressText" class="position-absolute">{{getRoundedEnergyPercent()}}%</p> -->
-        <p id="progressText" class="position-absolute">{{energyPercent}}%</p>
-        <!-- <p id="progressText" class="position-absolute">{{energy}}%</p> -->
-        <p *ngIf=""></p>
+    <div id="progressBar" class="progress-bar" role="progressbar" [attr.aria-valuenow]="energyPercent" aria-valuemin="0" aria-valuemax="100" [style.width.%]="energyPercent">
+        <p id="progressText">{{energyPercent}}%</p>
     </div>
   </div>
 
 </div>
-
-<!-- Brug denne -->
-<!-- <article *ngIf="!data.notes">
-  <div>{{test()}}</div>
-</article> -->

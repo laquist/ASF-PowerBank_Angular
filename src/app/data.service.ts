@@ -116,7 +116,6 @@ export class DataService {
   /** Sets new interval and if success then saves data to LocalStorage */
   setEnergyInterval(interval: number): void {
     if (this.data.energy.interval = interval) {
-      console.log('Interval updated');
 
       this.saveData();
     } else {
@@ -136,10 +135,10 @@ export class DataService {
 
   /** Generates TestData from the Mock-notes.ts file */
   generateTestData(): void {
-    const startTime = new Date();
+    const startTime = new Date(0);
     startTime.setHours(7, 0, 0, 0);
 
-    const endTime = new Date();
+    const endTime = new Date(0);
     endTime.setHours(23, 0, 0, 0);
 
     this.data = new Data(
