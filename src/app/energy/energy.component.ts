@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, observable, interval } from 'rxjs';
 import { DataService } from '../data.service';
-import { Energy } from '../energy';
-import { start } from 'repl';
-// import { Note } from '../note';
 
 @Component({
   selector: 'app-energy',
