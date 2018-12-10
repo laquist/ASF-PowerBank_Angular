@@ -13,15 +13,18 @@ export class EnergyComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+
     // Calculates interval (milisecs) between 1 percent
     this.calcInterval();
 
     // Updates energyPercent and sets new timer
     this.updateEnergyPercent();
+
   }
 
   /** Calculates the energy percent */
   calcEnergyPercent(): number {
+
     const currentTime: Date = new Date();
 
     // Checks if currentTime is between the startTime & endTime
@@ -66,24 +69,30 @@ export class EnergyComponent implements OnInit {
       // 0% Energy after endTime until next startTime
       return 0;
     }
+
   }
 
   /** Gets the Energy Percent in rounded numbers (no decimals) */
   getRoundedEnergyPercent(): number {
+
     return Math.floor(this.calcEnergyPercent());
+
   }
 
   /** Updates energyPercent and sets a new timer for next update */
-  updateEnergyPercent() {
+  updateEnergyPercent(): void {
+
     // Sets the energyPercent
     this.energyPercent = this.getRoundedEnergyPercent();
 
     // Sets new timer
     this.setEnergyTimer();
+
   }
 
   /** Calculates and saves the interval (in milisecs) of 1 percent */
   calcInterval(): void {
+
     if (this.dataService.data.energy.startTime !== new Date(0)
     && this.dataService.data.energy.endTime !== new Date(0)) {
 
@@ -99,10 +108,12 @@ export class EnergyComponent implements OnInit {
     } else {
       console.log('ERROR calculating energy interval!');
     }
+
   }
 
   /** Calculates and returns the time until next energy update, in milisecs */
   calcNextTimer(): number {
+
     // Calculates millisecs from startTime to now
     const currentEnergy = this.calcEnergyPercent() * this.dataService.data.energy.interval;
 
@@ -115,12 +126,13 @@ export class EnergyComponent implements OnInit {
 
     return timeForNextUpdate;
 
-    // return 3000;
   }
 
   /** Sets timer for next update */
-  setEnergyTimer() {
-    setTimeout(this.updateEnergyPercent, this.calcNextTimer());
-  }
+  setEnergyTimer(): void {
 
+    // You need to use ArrowFunction ()=> to preserve this context within setTimeout.
+    setTimeout(() => this.updateEnergyPercent(), this.calcNextTimer());
+
+  }
 }
