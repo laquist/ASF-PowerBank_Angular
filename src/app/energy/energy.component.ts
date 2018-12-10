@@ -114,6 +114,8 @@ export class EnergyComponent implements OnInit {
     const timeForNextUpdate = nextUpdate - currentEnergy;
 
     return timeForNextUpdate;
+
+    // return 3000;
   }
 
   /** Sets timer for next update */

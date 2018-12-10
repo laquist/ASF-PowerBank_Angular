@@ -1,0 +1,22 @@
+/* --- MODAL --- */
+.energiSmileyLabels {
+    height: 47px;
+    width: 47px;
+}
+
+.custom-radio .custom-control-input:checked~ img {
+    background-color: #7e28ff;
+    border-radius: 50%;
+}
+
+#descriptionInput {
+    height: 230px;
+}
+
+#saveBtn {
+    background-color: #1c7cd5;
+}
+
+p {
+    margin: 0;
+}
