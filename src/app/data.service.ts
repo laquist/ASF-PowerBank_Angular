@@ -103,6 +103,23 @@ export class DataService {
     }
   }
 
+  /** Adds new note, and saves to LocalStorage */
+  addNote(newNote: Note): void {
+
+    // Get the next available ID
+    const newID = this.data.notes.length;
+
+    // Sets ID
+    newNote.id = newID;
+
+    // Adds to data object
+    this.data.notes.push(newNote);
+
+    // If success then saves to LocalStorage
+    this.saveData();
+
+  }
+
   /** Returns Notes */
   getNotes(): Note[] {
     return this.data.notes;

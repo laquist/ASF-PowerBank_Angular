@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Note } from '../note';
 
 @Component({
   selector: 'app-note-form-content',
@@ -13,4 +14,11 @@ export class NoteFormContentComponent implements OnInit {
   ngOnInit() {
   }
 
+  create(): Note {
+
+  }
+
+  save(): void {
+
+  }
 }

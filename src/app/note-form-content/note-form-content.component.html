@@ -3,7 +3,7 @@
     <form>
         <div class="form-group">
             <label>Titel</label>
-            <input type="text" id="titleInput" class="form-control">
+            <input type="text" class="form-control" #title>
         </div>
 
         <div id="energiGroup" class="form-group">
@@ -46,9 +46,9 @@
 
         <div class="form-group">
             <label>Beskrivelse</label>
-            <input type="text" id="descInput" class="form-control">
+            <input type="text" id="descInput" class="form-control" #descInput>
         </div>
     </form>
 
-    <button type="button" id="saveBtn" class="btn btn-primary">Gem</button>
+    <button type="button" id="saveBtn" class="btn btn-primary" (click)="save()">Gem</button>
 </div>
