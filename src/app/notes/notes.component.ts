@@ -18,11 +18,14 @@ export class NotesComponent implements OnInit {
   }
   /** Gets Notes and sets this.notes */
   getNotes(): void {
+
     this.notes = this.dataService.getNotes();
+
   }
 
   /** Gets the img path that belongs to the energy */
-  getSmileyImgPath(energy): String {
+  getSmileyImgPath(energy): string {
+
     let path;
 
     if (energy === 25) {
@@ -38,10 +41,12 @@ export class NotesComponent implements OnInit {
     }
 
     return path;
+
   }
 
   /** Creates a Date string in the correct format */
-  createDateString(date): String {
+  createDateString(date): string {
+
     const currentDate = new Date();
     let dateString;
     // Saves dateTime and makes sure that the time is in 4 digits, instead of it only showing one zero character (15:00 vs 15:0)
@@ -74,5 +79,6 @@ export class NotesComponent implements OnInit {
     }
 
     return dateString + dateTime;
+
   }
 }

@@ -13,7 +13,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.loadData();
-    // Er det bad practice at have AppComponent implement OnInit og køre ngOnInit() og loade min data?
-    // Gør det bare for at loade data en enkelt gang, i stedet for igen og igen, i hvert enkelt component
   }
 }

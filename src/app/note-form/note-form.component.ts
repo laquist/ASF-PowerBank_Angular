@@ -14,7 +14,9 @@ export class NoteFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  open() {
+  open(): void {
+
     this.modalService.open(NoteFormContentComponent);
+
   }
 }

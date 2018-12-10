@@ -16,7 +16,7 @@ export class DataService {
   constructor() { }
 
   /** Loads data from LocalStorage */
-  loadData() {
+  loadData(): void {
     let dataString;
 
     // Sets dataString, if data exists in LocalStorage
@@ -124,7 +124,7 @@ export class DataService {
   }
 
   /** Checks elements in an array for having a property with same value as the value you send as parameter */
-  checkForMatch(array, propertyToMatch, valueToMatch): Boolean {
+  checkForMatch(array: any, propertyToMatch: any, valueToMatch: any): boolean {
     for (let i = 0; i < array.length; i++) {
       if (array[i][propertyToMatch] === valueToMatch) {
         return true;
