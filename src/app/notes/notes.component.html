@@ -18,7 +18,8 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h4 class="card-title">{{note.title}}</h4>
-            <img class="cardSmiley" [src]="getSmileyImgPath(note.energy)">
+            <!-- <img class="cardSmiley" [src]="getSmileyImgPath(note.energy)"> -->
+            <img class="cardSmiley" [src]="getSmileyFromEnergy(note.energy).imgPath">
           </div>
 
           <h6 class="card-subtitle">{{createDateString(note.date)}}</h6>

@@ -218,11 +218,11 @@ export class DataService {
   /** Creates Smiley objects and returns in an Smiley[] */
   createSmileys(): Smiley[] {
 
-    const vomit = new Smiley('vomitSmiley', 'Meget trist', '../../assets/img/vomited.svg');
-    const sad = new Smiley('sadSmiley', 'Trist', '../../assets/img/Sad.svg');
-    const neutral = new Smiley('neutralSmiley', 'Neutral', '../../assets/img/neutral.svg');
-    const glad = new Smiley('happySmiley', 'Glad', '../../assets/img/happy-real.svg');
-    const megetGlad = new Smiley('veryHappySmiley', 'Meget glad', '../../assets/img/happy.svg');
+    const vomit = new Smiley('vomitSmiley', 'Meget trist', -25, '../../assets/img/vomited.svg');
+    const sad = new Smiley('sadSmiley', 'Trist', -10, '../../assets/img/Sad.svg');
+    const neutral = new Smiley('neutralSmiley', 'Neutral', 0, '../../assets/img/neutral.svg');
+    const glad = new Smiley('happySmiley', 'Glad', 10, '../../assets/img/happy-real.svg');
+    const megetGlad = new Smiley('veryHappySmiley', 'Meget glad', 25, '../../assets/img/happy.svg');
 
     return [ vomit, sad, neutral, glad, megetGlad ];
 
@@ -236,10 +236,11 @@ export class DataService {
   }
 
   /** Returns the Smiley object with the correct name */
-  getSmiley(name: string): Smiley {
+  getSmileyFromEnergy(energy: number): Smiley {
 
-    const smiley = this.smileys.filter(item => (item.name === name))[0];
+    const smiley = this.smileys.filter(item => (item.energy === energy))[0];
 
+    console.log('Torben');
     return smiley;
 
   }

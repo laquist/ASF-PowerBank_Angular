@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Note } from '../note';
+import { Smiley } from '../smiley';
 
 @Component({
   selector: 'app-notes',
@@ -9,22 +10,23 @@ import { Note } from '../note';
 })
 export class NotesComponent implements OnInit {
 
-  notes: Note[];
+//   notes: Note[];
+  notes: Note[] = this.dataService.getNotes();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.getNotes();
+    // this.getNotes();
   }
   /** Gets Notes and sets this.notes */
-  getNotes(): void {
+//   getNotes(): void {
 
-    this.notes = this.dataService.getNotes();
+//     this.notes = this.dataService.getNotes();
 
-  }
+//   }
 
   /** Gets the img path that belongs to the energy */
-  getSmileyImgPath(energy): string {
+  getSmileyImgPath(energy: number): string {
 
     let path;
 
@@ -44,8 +46,16 @@ export class NotesComponent implements OnInit {
 
   }
 
+  /** */
+  getSmileyFromEnergy(energy: number): Smiley {
+
+    console.log('John');
+    return this.dataService.getSmileyFromEnergy(energy);
+
+  }
+
   /** Creates a Date string in the correct format */
-  createDateString(date): string {
+  createDateString(date: Date): string {
 
     const currentDate = new Date();
     let dateString;
