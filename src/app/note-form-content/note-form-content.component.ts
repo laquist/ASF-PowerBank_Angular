@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../data.service';
 import { Note } from '../note';
+import { Smiley } from '../smiley';
 
 @Component({
   selector: 'app-note-form-content',
@@ -9,14 +11,20 @@ import { Note } from '../note';
 })
 export class NoteFormContentComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  smileys: Smiley[] = this.dataService.getAllSmileys();
+
+  constructor(
+    public activeModal: NgbActiveModal,
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
-  }
-
-  create(): Note {
 
   }
+
+  // create(): Note {
+
+  // }
 
   save(): void {
 

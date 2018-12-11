@@ -8,38 +8,11 @@
 
         <div id="energiGroup" class="form-group">
             <label class="w-100">Energi</label>
-            <div class="custom-control custom-radio custom-control-inline">
-                <label class="energiSmileyLabels">
-                    <input type="radio" id="vomitSmiley" name="radioSmileys" class="custom-control-input">
-                    <img src="../../assets/img/vomited.svg" alt="Meget trist">
-                </label>
-            </div>
 
-            <div class="custom-control custom-radio custom-control-inline">
+            <div *ngFor="let smiley of smileys" class="custom-control custom-radio custom-control-inline">
                 <label class="energiSmileyLabels">
-                    <input type="radio" id="sadSmiley" name="radioSmileys" class="custom-control-input">
-                    <img src="../../assets/img/Sad.svg" alt="Trist">
-                </label>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-                <label class="energiSmileyLabels">
-                    <input type="radio" id="neutralSmiley" name="radioSmileys" class="custom-control-input">
-                    <img src="../../assets/img/neutral.svg" alt="Neutral">
-                </label>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-                <label class="energiSmileyLabels">
-                    <input type="radio" id="happySmiley" name="radioSmileys" class="custom-control-input">
-                    <img src="../../assets/img/happy-real.svg" alt="Glad">
-                </label>
-            </div>
-
-            <div class="custom-control custom-radio custom-control-inline">
-                <label class="energiSmileyLabels">
-                    <input type="radio" id="veryHappySmiley" name="radioSmileys" class="custom-control-input">
-                    <img src="../../assets/img/happy.svg" alt="Meget glad">
+                    <input type="radio" [id]="smiley.name" name="radioSmileys" class="custom-control-input">
+                    <img [src]="smiley.imgPath" [alt]="smiley.desc">
                 </label>
             </div>
         </div>

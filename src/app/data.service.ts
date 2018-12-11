@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Data } from './data';
 import { Note } from './note';
 import { Energy } from './energy';
+import { Smiley } from './smiley';
 
 import { MockNotes } from './mock-notes';
 
@@ -11,13 +12,66 @@ import { MockNotes } from './mock-notes';
 export class DataService {
 
   // Data object
-  data: Data;
+  // data: Data;
+
+  data: Data = this.loadData();
+  smileys: Smiley[] = this.createSmileys();
 
   constructor() { }
 
   /** Loads data from LocalStorage */
-  loadData(): void {
-    let dataString;
+  loadData(): Data {
+
+    let dataString: string;
+
+    // Sets dataString, if data exists in LocalStorage
+    try {
+      if (localStorage['powerbank']) {
+        dataString = localStorage['powerbank'];
+      }
+    } catch (e) {
+      console.log('ERROR when loading from Local Storage!\n' + e);
+    }
+
+    // If any data exists in LocalStorage
+    if (dataString) {
+      const noteArray: Note[] = [];
+      let energyObj: Energy;
+
+      // Formats JSON to JS objects
+      const dataTable = JSON.parse(dataString);
+
+      // Formats the date for posts
+      dataTable.notes.forEach(item => {
+        item.date = new Date(item.date);
+      });
+
+
+      dataTable.notes.forEach(item => {
+        // Creates Note instance of all notes
+        const newNote = new Note(item.title, item.energy, item.desc, new Date(item.date));
+        newNote.id = item.id;
+
+        // Adds to temporary array
+        noteArray.push(newNote);
+      });
+
+      // Creates Energy instance of energy info
+      energyObj = new Energy(new Date(dataTable.energy.startTime), new Date(dataTable.energy.endTime), dataTable.energy.interval);
+
+      // Creates Data instance
+      const newDataObj = new Data(noteArray, energyObj);
+
+      // Sets this.data to the new Data instance
+      return newDataObj;
+    }
+
+  }
+
+  /** Reloads data from LocalStorage, and updates existing data */
+  reloadData(): void {
+
+    let dataString: string;
 
     // Sets dataString, if data exists in LocalStorage
     try {
@@ -84,10 +138,12 @@ export class DataService {
         console.log('Data loaded.');
       }
     }
+
   }
 
   /** Saves data in LocalStorage */
   saveData(): void {
+
     let dataString;
 
     try {
@@ -101,6 +157,7 @@ export class DataService {
     } catch (e) {
       console.log('ERROR when writing to Local Storage!\n' + e);
     }
+
   }
 
   /** Adds new note, and saves to LocalStorage */
@@ -122,36 +179,74 @@ export class DataService {
 
   /** Returns Notes */
   getNotes(): Note[] {
+
     return this.data.notes;
+
   }
 
   /** Returns Energy Object with starttime, endtime, and interval */
   getEnergyInfo(): Energy {
+
     return this.data.energy;
+
   }
 
   /** Sets new interval and if success then saves data to LocalStorage */
   setEnergyInterval(interval: number): void {
+
     if (this.data.energy.interval = interval) {
 
       this.saveData();
     } else {
       console.log('Error while setting interval');
     }
+
   }
 
   /** Checks elements in an array for having a property with same value as the value you send as parameter */
   checkForMatch(array: any, propertyToMatch: any, valueToMatch: any): boolean {
+
     for (let i = 0; i < array.length; i++) {
       if (array[i][propertyToMatch] === valueToMatch) {
         return true;
       }
     }
     return false;
+
+  }
+
+  /** Creates Smiley objects and returns in an Smiley[] */
+  createSmileys(): Smiley[] {
+
+    const vomit = new Smiley('vomitSmiley', 'Meget trist', '../../assets/img/vomited.svg');
+    const sad = new Smiley('sadSmiley', 'Trist', '../../assets/img/Sad.svg');
+    const neutral = new Smiley('neutralSmiley', 'Neutral', '../../assets/img/neutral.svg');
+    const glad = new Smiley('happySmiley', 'Glad', '../../assets/img/happy-real.svg');
+    const megetGlad = new Smiley('veryHappySmiley', 'Meget glad', '../../assets/img/happy.svg');
+
+    return [ vomit, sad, neutral, glad, megetGlad ];
+
+  }
+
+  /** Returns an Smiley[] of all Smileys */
+  getAllSmileys(): Smiley[] {
+
+    return this.smileys;
+
+  }
+
+  /** Returns the Smiley object with the correct name */
+  getSmiley(name: string): Smiley {
+
+    const smiley = this.smileys.filter(item => (item.name === name))[0];
+
+    return smiley;
+
   }
 
   /** Generates TestData from the Mock-notes.ts file */
   generateTestData(): void {
+
     const startTime = new Date(0);
     startTime.setHours(7, 0, 0, 0);
 
@@ -170,5 +265,6 @@ export class DataService {
     console.log('TestData created');
 
     this.saveData();
+
   }
 }
