@@ -10,20 +10,14 @@ import { Smiley } from '../smiley';
 })
 export class NotesComponent implements OnInit {
 
-//   notes: Note[];
-  notes: Note[] = this.dataService.getNotes();
+
+  notes: Note[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // this.getNotes();
-  }
-  /** Gets Notes and sets this.notes */
-//   getNotes(): void {
-
-//     this.notes = this.dataService.getNotes();
-
-//   }
+    this.notes = this.dataService.getNotes();
+   }
 
   /** Gets the img path that belongs to the energy */
   getSmileyImgPath(energy: number): string {
@@ -47,12 +41,29 @@ export class NotesComponent implements OnInit {
   }
 
   /** */
-  getSmileyFromEnergy(energy: number): Smiley {
+  // getSmileyFromEnergy(energy: number): Smiley {
+
+  //   console.log('John');
+  //   return this.dataService.getSmileyFromEnergy(energy);
+
+  // }
+
+  getSmileyFromEnergy(energy: number): string {
 
     console.log('John');
-    return this.dataService.getSmileyFromEnergy(energy);
+    return this.dataService.getSmileyFromEnergy(energy).imgPath;
+
+    // const result = this.dataService.getSmileyFromEnergy(energy).imgPath;
+    // console.log(result);
+    // return result;
 
   }
+
+  GetDesc(): string {
+    console.log('poodle');
+    return 'dawg';
+  }
+
 
   /** Creates a Date string in the correct format */
   createDateString(date: Date): string {

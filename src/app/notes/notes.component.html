@@ -1,4 +1,5 @@
 <div id="notes" class="container">
+  <p>{{GetDesc()}}</p>  
 
   <!-- No notes message -->
   <ng-template #noNotes>
@@ -9,7 +10,7 @@
 
   <section class="row" *ngIf="notes; else noNotes">
     <!-- Notes -->
-    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes">
+    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes;">
       <div id="card" [ngClass]="{
         'card' : true,
         'greenBorder' : note.energy >= 0,
@@ -19,7 +20,7 @@
           <div class="d-flex justify-content-between">
             <h4 class="card-title">{{note.title}}</h4>
             <!-- <img class="cardSmiley" [src]="getSmileyImgPath(note.energy)"> -->
-            <img class="cardSmiley" [src]="getSmileyFromEnergy(note.energy).imgPath">
+            <!-- <img class="cardSmiley" [src]="getSmileyFromEnergy(note.energy)"> -->
           </div>
 
           <h6 class="card-subtitle">{{createDateString(note.date)}}</h6>
