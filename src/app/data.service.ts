@@ -69,6 +69,7 @@ export class DataService {
   }
 
   /** Reloads data from LocalStorage, and updates existing data */
+  // ~~~~~~~ SKAL TESTES
   reloadData(): void {
 
     let dataString: string;

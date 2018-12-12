@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { DataService } from './data.service';
 export class AppComponent implements OnInit {
   title = 'ASF-PowerBank';
 
-  constructor(private dataService: DataService) {}
+  constructor() {}
 
   ngOnInit() {
   }
