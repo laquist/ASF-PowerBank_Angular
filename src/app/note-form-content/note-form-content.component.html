@@ -3,16 +3,15 @@
     <form [formGroup]="noteFormGroup" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label>Titel</label>
-            <input type="text" class="form-control" formControlName="title">
+            <input type="text" class="form-control" formControlName="title" required>
         </div>
 
         <div id="energiGroup" class="form-group">
-            <label class="w-100">Energi</label>
+            <label id="energyTitle">Energi</label>
 
             <div *ngFor="let smiley of smileys" class="custom-control custom-radio custom-control-inline">
                 <label class="energiSmileyLabels">
-                    <!-- name="radioSmileys" -->
-                    <input type="radio" [id]="smiley.name" name="energy" class="custom-control-input" formControlName="energy">
+                    <input type="radio" [id]="smiley.name" name="energy" [value]="smiley.energy" class="custom-control-input" formControlName="energy" required>
                     <img [src]="smiley.imgPath" [alt]="smiley.desc">
                 </label>
             </div>
@@ -20,11 +19,12 @@
 
         <div class="form-group">
             <label>Beskrivelse</label>
-            <input type="text" id="descInput" class="form-control" formControlName="desc">
+            <input type="text" id="descInput" class="form-control" formControlName="desc" required>
         </div>
-    </form>
 
-    <button type="submit" id="saveBtn" class="btn btn-primary" [disabled]="!noteFormGroup.valid">Gem</button>
+
+        <button type="submit" id="saveBtn" class="btn btn-primary" [disabled]="!noteFormGroup.valid">Gem</button>
+    </form>
 </div>
 
 

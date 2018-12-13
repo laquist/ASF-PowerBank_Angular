@@ -12,9 +12,8 @@ import { MockNotes } from './mock-notes';
 export class DataService {
 
   // Data object
-  // data: Data;
-
   data: Data = this.loadData();
+
   smileys: Smiley[] = this.createSmileys();
 
   constructor() { }
@@ -239,10 +238,7 @@ export class DataService {
   /** Returns the Smiley object with the correct name */
   getSmileyFromEnergy(energy: number): Smiley {
 
-    const smiley = this.smileys.filter(item => (item.energy === energy))[0];
-
-    console.log('Torben');
-    return smiley;
+    return this.smileys.filter(item => (item.energy === energy))[0];
 
   }
 

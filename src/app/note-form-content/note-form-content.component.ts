@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataService } from '../data.service';
@@ -13,13 +13,13 @@ import { Smiley } from '../smiley';
 })
 export class NoteFormContentComponent implements OnInit {
 
+  smileys: Smiley[] = this.dataService.getAllSmileys();
+
   noteFormGroup = new FormGroup({
     title: new FormControl(''),
-    energy: new FormControl(0),
+    energy: new FormControl(),
     desc: new FormControl('')
-    });
-
-  smileys: Smiley[] = this.dataService.getAllSmileys();
+  });
 
   constructor(
     public activeModal: NgbActiveModal,

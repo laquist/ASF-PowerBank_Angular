@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Note } from '../note';
-import { Smiley } from '../smiley';
 
 @Component({
   selector: 'app-notes',
@@ -10,60 +9,18 @@ import { Smiley } from '../smiley';
 })
 export class NotesComponent implements OnInit {
 
-
-  notes: Note[];
+  notes: Note[] = this.dataService.getNotes();
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() {
-    this.notes = this.dataService.getNotes();
-   }
+  ngOnInit() { }
 
-  /** Gets the img path that belongs to the energy */
+/** Gets the img path that belongs to the energy */
   getSmileyImgPath(energy: number): string {
 
-    let path;
-
-    if (energy === 25) {
-      path = 'assets/img/happy.svg';
-    } else if (energy === 10) {
-        path = 'assets/img/happy-real.svg';
-    } else if (energy === 0) {
-        path = 'assets/img/neutral.svg';
-    } else if (energy === -10) {
-        path = 'assets/img/Sad.svg';
-    } else if (energy === -25) {
-        path = 'assets/img/vomited.svg';
-    }
-
-    return path;
-
-  }
-
-  /** */
-  // getSmileyFromEnergy(energy: number): Smiley {
-
-  //   console.log('John');
-  //   return this.dataService.getSmileyFromEnergy(energy);
-
-  // }
-
-  getSmileyFromEnergy(energy: number): string {
-
-    console.log('John');
     return this.dataService.getSmileyFromEnergy(energy).imgPath;
 
-    // const result = this.dataService.getSmileyFromEnergy(energy).imgPath;
-    // console.log(result);
-    // return result;
-
   }
-
-  GetDesc(): string {
-    console.log('poodle');
-    return 'dawg';
-  }
-
 
   /** Creates a Date string in the correct format */
   createDateString(date: Date): string {
