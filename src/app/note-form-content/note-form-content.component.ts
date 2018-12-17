@@ -29,17 +29,25 @@ export class NoteFormContentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
   onSubmit(): void {
     // console.warn(this.noteFormGroup.value);
-
+    // console.log(this.noteFormGroup.value.title);
+    this.dataService.addNote(this.createNote());
+    console.log('Submitted');
   }
 
-  // create(): Note {
+  createNote(): Note {
+    const newNote = new Note(
+      this.noteFormGroup.value.title,
+      this.noteFormGroup.value.energy,
+      this.noteFormGroup.value.desc,
+      new Date()
+    );
 
-  // }
+    return newNote;
+  }
 
   // save(): void {
 

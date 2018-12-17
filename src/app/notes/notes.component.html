@@ -9,7 +9,7 @@
 
   <section class="row" *ngIf="notes; else noNotes">
     <!-- Notes -->
-    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes;">
+    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes.slice().reverse()">
       <div id="card" [ngClass]="{
         'card' : true,
         'greenBorder' : note.energy >= 0,
