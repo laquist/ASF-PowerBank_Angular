@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -32,13 +31,23 @@ export class NoteFormContentComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.warn(this.noteFormGroup.value);
-    // console.log(this.noteFormGroup.value.title);
-    this.dataService.addNote(this.createNote());
+
+    // Creates Note object from FormGroup
+    const newNote = this.createNote();
+
+    // Saves the note in storage
+    this.saveNote(newNote);
+
+    // Temp
     console.log('Submitted');
+
+    // Closes the modal
+    this.activeModal.close();
+
   }
 
   createNote(): Note {
+
     const newNote = new Note(
       this.noteFormGroup.value.title,
       this.noteFormGroup.value.energy,
@@ -47,21 +56,12 @@ export class NoteFormContentComponent implements OnInit {
     );
 
     return newNote;
+
   }
 
-  // save(): void {
+  saveNote(note: Note): void {
 
-  // }
+    this.dataService.addNote(note);
 
-  // checkValidTest(form, event: any): void {
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-
-  //     console.log('Not valid!');
-  //   }
-  //   form.classList.add('was-validated');
-
-  //   // const result = form.checkValidity() ? true : false;
-  // }
+  }
 }

@@ -13,7 +13,10 @@ export class NotesComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // test
+    console.log(this.dataService.tester());
+  }
 
 /** Gets the img path that belongs to the energy */
   getSmileyImgPath(energy: number): string {

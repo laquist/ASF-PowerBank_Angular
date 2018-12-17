@@ -5,6 +5,7 @@ import { Energy } from './energy';
 import { Smiley } from './smiley';
 
 import { MockNotes } from './mock-notes';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,17 @@ export class DataService {
 
   smileys: Smiley[] = this.createSmileys();
 
+
+  // testData: Observable<Data>;
+  testData: Observable<Data> = of(this.data);
+
+
   constructor() { }
+
+  tester(): void {
+    console.log('testData:');
+    console.log(this.testData);
+  }
 
   /** Loads data from LocalStorage */
   loadData(): Data {
