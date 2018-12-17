@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+// import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataService } from '../data.service';
@@ -15,14 +16,15 @@ export class NoteFormContentComponent implements OnInit {
 
   smileys: Smiley[] = this.dataService.getAllSmileys();
 
-  noteFormGroup = new FormGroup({
-    title: new FormControl(''),
-    energy: new FormControl(),
-    desc: new FormControl('')
+  noteFormGroup = this.formBuilder.group({
+    'title': ['', Validators.required],
+    'energy': ['', Validators.required],
+    'desc': ['', Validators.required]
   });
 
   constructor(
     public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
     private dataService: DataService
   ) { }
 
@@ -31,7 +33,8 @@ export class NoteFormContentComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.warn(this.noteFormGroup.value);
+    // console.warn(this.noteFormGroup.value);
+
   }
 
   // create(): Note {
