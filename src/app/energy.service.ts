@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
+import { Data } from './data';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +10,22 @@ export class EnergyService {
 
   energyPercent: number;
 
+  // Test
+  // testNotes;
+
+
   constructor(private dataService: DataService) {
 
     this.updateEnergyPercent();
 
+    // Tests
+    // this.testGetDataObject();
 
-    // Test
-    // this.dataService.testData.subscribe();
-    this.dataService.testData.subscribe(
-      x => console.log('Observer got a next value: ' + x),
-      err => console.error('Observer got an error: ' + err),
-      () => console.log('Observer got a complete notification')
-    );
   }
+
+  // testGetDataObject(): void {
+  //   this.testNotes = from(this.dataService.data.notes);
+  // }
 
   /** Calculates the energy percent */
   calcEnergyPercent(): number {

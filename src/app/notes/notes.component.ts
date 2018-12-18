@@ -15,7 +15,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     // test
-    console.log(this.dataService.tester());
+    // console.log(this.dataService.tester());
   }
 
 /** Gets the img path that belongs to the energy */

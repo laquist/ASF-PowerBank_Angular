@@ -14,20 +14,30 @@ export class DataService {
 
   // Data object
   data: Data = this.loadData();
-
   smileys: Smiley[] = this.createSmileys();
 
-
-  // testData: Observable<Data>;
-  testData: Observable<Data> = of(this.data);
-
+  // Tests
+  // testData: Observable<Note[]> = of(this.data.notes);
 
   constructor() { }
 
-  tester(): void {
-    console.log('testData:');
-    console.log(this.testData);
-  }
+  // tester(): void {
+  //   console.log('testData:');
+  //   console.log(this.testData);
+
+  //   console.log('Before subscribe');
+  //   // this.testData.subscribe(x => console.log(x));
+  //   this.testData.subscribe(x => this.tester2(x));
+  //   console.log('After subscribe');
+  // }
+
+  // tester2(noteArray): void {
+  //   noteArray.forEach(element => {
+  //     console.log(element);
+  //   });
+  // }
+
+
 
   /** Loads data from LocalStorage */
   loadData(): Data {
