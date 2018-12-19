@@ -9,13 +9,20 @@ import { Note } from '../note';
 })
 export class NotesComponent implements OnInit {
 
-  notes: Note[] = this.dataService.getNotes();
+  // Properties
+  // notes: Note[] = this.dataService.getNotes();
+
+  notesTest: Note[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    // test
-    // console.log(this.dataService.tester());
+    this.getNotes();
+  }
+
+  getNotes(): void {
+    this.dataService.getNotesTest()
+      .subscribe(notes => this.notesTest = notes);
   }
 
 /** Gets the img path that belongs to the energy */

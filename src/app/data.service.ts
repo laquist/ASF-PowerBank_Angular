@@ -5,39 +5,26 @@ import { Energy } from './energy';
 import { Smiley } from './smiley';
 
 import { MockNotes } from './mock-notes';
-import { Observable, of } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  // Data object
+  // Properties
   data: Data = this.loadData();
   smileys: Smiley[] = this.createSmileys();
 
-  // Tests
-  // testData: Observable<Note[]> = of(this.data.notes);
 
   constructor() { }
 
-  // tester(): void {
-  //   console.log('testData:');
-  //   console.log(this.testData);
-
-  //   console.log('Before subscribe');
-  //   // this.testData.subscribe(x => console.log(x));
-  //   this.testData.subscribe(x => this.tester2(x));
-  //   console.log('After subscribe');
-  // }
-
-  // tester2(noteArray): void {
-  //   noteArray.forEach(element => {
-  //     console.log(element);
-  //   });
-  // }
-
-
+  // Test
+  getNotesTest(): Observable<Note[]> {
+    const notes = of(this.data.notes);
+    return notes;
+  }
 
   /** Loads data from LocalStorage */
   loadData(): Data {
@@ -201,7 +188,11 @@ export class DataService {
   /** Returns Notes */
   getNotes(): Note[] {
 
-    return this.data.notes;
+    if (this.data.notes) {
+      return this.data.notes;
+    } else { // TEMP
+      return [];
+    }
 
   }
 

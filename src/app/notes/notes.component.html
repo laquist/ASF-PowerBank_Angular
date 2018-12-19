@@ -7,9 +7,13 @@
     </article>
   </ng-template>
 
-  <section class="row" *ngIf="notes; else noNotes">
+  <!-- <button (click)="getNotes()">Get Notes</button> -->
+
+  <!-- <section class="row" *ngIf="notes; else noNotes"> -->
+  <section class="row" *ngIf="notesTest; else noNotes">
     <!-- Notes -->
-    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes.slice().reverse()">
+    <!-- <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notes.slice().reverse()"> -->
+    <article class="col-12 col-md-6 col-xl-4" *ngFor="let note of notesTest.slice().reverse()">
       <div id="card" [ngClass]="{
         'card' : true,
         'greenBorder' : note.energy >= 0,

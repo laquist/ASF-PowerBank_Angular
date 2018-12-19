@@ -1,31 +1,46 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-import { Data } from './data';
-import { from } from 'rxjs';
+// import { Data } from './data';
+import { Note } from './note';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnergyService {
 
-  energyPercent: number;
+  // Properties
+  // energyPercent: number;
+  energyPercent: number = this.getEnergyPercent();
 
-  // Test
-  // testNotes;
-
+  notesTest: Note[];
 
   constructor(private dataService: DataService) {
 
     this.updateEnergyPercent();
 
-    // Tests
-    // this.testGetDataObject();
+    this.getNotes();
 
   }
 
-  // testGetDataObject(): void {
-  //   this.testNotes = from(this.dataService.data.notes);
-  // }
+  getEnergyPercent(): number {
+    return this.getRoundedEnergyPercent();
+
+    // Mangler så at sætte timer i, som updateEnergyPercent ellers gør
+  }
+
+  getNotes(): void {
+    this.dataService.getNotesTest()
+      // .subscribe(notes => this.notesTest = notes);
+      .subscribe(notes => this.saveAndUpdate(notes));
+  }
+
+  saveAndUpdate(notes): void {
+    this.notesTest = notes;
+
+    this.updateEnergyPercent();
+
+    console.log('Saved and updated! :)');
+  }
 
   /** Calculates the energy percent */
   calcEnergyPercent(): number {
